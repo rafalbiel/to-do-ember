@@ -3,6 +3,7 @@
 module.exports = function (environment) {
   const ENV = {
     modulePrefix: 'to-do-list-x',
+    podModulePrefix: 'to-do-list-x/pods',
     environment,
     rootURL: '/',
     locationType: 'history',
