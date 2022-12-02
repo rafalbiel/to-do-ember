@@ -1,7 +1,20 @@
-{{page-title "ToDoListX"}}
+{{page-title 'ToDo'}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+<form class='row g-3'>
+  <div class='col-auto'>
+    <label for='inputPassword2' class='visually-hidden'>Password</label>
+    <input
+      type='password'
+      class='form-control'
+      id='inputPassword2'
+      placeholder='Password'
+    />
+  </div>
+  <div class='col-auto'>
+    <button type='submit' class='btn btn-primary mb-3'>Confirm identity</button>
+  </div>
+</form>
+
+<List @items={{this.items}} />
 
 {{outlet}}
