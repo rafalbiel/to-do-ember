@@ -1,13 +1,14 @@
 {{page-title 'ToDo'}}
 
-<form class='row g-3'>
+<form class='row g-3' {{on 'submit' this.addNewTask}}>
   <div class='col-auto'>
     <label for='inputPassword2' class='visually-hidden'>Password</label>
     <input
-      type='password'
+      type='text'
       class='form-control'
       id='inputPassword2'
-      placeholder='Password'
+      placeholder='Add new task'
+      {{on 'input' this.onInputValue}}
     />
   </div>
   <div class='col-auto'>
