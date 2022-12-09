@@ -7,10 +7,7 @@
     id='secondCheckbox'
     {{on 'change' this.onToggleIsDone}}
   />
-  <label
-    class='form-check-label'
-    for='secondCheckbox'
-  >{{@item.description}}</label>
+  <LinkTo @route='task' @model='{{@item.id}}'>{{@item.description}}</LinkTo>
   <button
     type='button'
     class='btn btn-danger'
