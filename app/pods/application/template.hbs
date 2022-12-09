@@ -5,6 +5,7 @@
     <label for='inputPassword2' class='visually-hidden'>Password</label>
     <input
       type='text'
+      value={{this.newTaskValue}}
       class='form-control'
       id='inputPassword2'
       placeholder='Add new task'
@@ -12,10 +13,14 @@
     />
   </div>
   <div class='col-auto'>
-    <button type='submit' class='btn btn-primary mb-3'>Confirm identity</button>
+    <button
+      type='submit'
+      class='btn btn-primary mb-3'
+      disabled={{this.hasEmptyValue}}
+    >Confirm identity</button>
   </div>
 </form>
 
-<List @items={{this.items}} />
+<List @items={{this.model}} />
 
 {{outlet}}

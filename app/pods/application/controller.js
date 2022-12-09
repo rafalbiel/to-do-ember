@@ -1,36 +1,32 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
+import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+
 export default class ApplicationController extends Controller {
-  @tracked items = [
-    {
-      isDone: false,
-      label: 'kupić jajka',
-    },
-    {
-      isDone: true,
-      label: 'ugotować jajka',
-    },
-    {
-      isDone: false,
-      label: 'zjeść jajka',
-    },
-  ];
+  @service store;
 
-  @action
-  onInputValue(event) {
-    this.newTaskValue = event.target.value;
+  @tracked newTaskValue = '';
+
+  get hasEmptyValue() {
+    return this.newTaskValue.trim().length === 0;
   }
-  @action
-  addNewTask(event) {
-    event.preventDefault();
 
-    this.items = [
-      ...this.items,
-      {
-        isDone: false,
-        label: this.newTaskValue,
-      },
-    ];
+  @action
+  async addNewTask(event) {
+    event.preventDefault();
+    if (this.hasEmptyValue) {
+      return;
+    }
+    const newTask = this.store.createRecord('task');
+    newTask.description = this.newTaskValue;
+
+    await newTask.save();
+    this.newTaskValue = '';
+  }
+
+  @action
+  onInputValue({ target: { value } }) {
+    this.newTaskValue = value;
   }
 }
